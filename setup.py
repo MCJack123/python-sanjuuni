@@ -38,7 +38,6 @@ class BuildCommand(build):
 
 if os.environ.get('CIBUILDWHEEL', '0') == '1' and platform.system() == "Windows":
     triplet = "x64-windows" if (platform.machine() == "x86_64" or platform.machine() == "amd64" or platform.machine() == "AMD64") else "arm64-windows"
-    assert os.path.exists(os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL.lib")
     setup(
         cmdclass={"build_clcpp": build_clcpp, "build": BuildCommand},
         ext_modules=[Extension(
@@ -47,7 +46,8 @@ if os.environ.get('CIBUILDWHEEL', '0') == '1' and platform.system() == "Windows"
             include_dirs=["sanjuuni.submodule/src", os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\include"],
             libraries=[os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL"],
             depends=["sanjuuni.submodule/src/sanjuuni.hpp", "sanjuuni.submodule/src/opencl.hpp"],
-            extra_compile_args=["-DNO_POCO=1", "-DHAS_OPENCL=1"] # https://github.com/pypa/setuptools/issues/4810
+            extra_compile_args=["-DNO_POCO=1", "-DHAS_OPENCL=1"], # https://github.com/pypa/setuptools/issues/4810
+            extra_link_args=["/Gd"]
         )]
     )
 else:

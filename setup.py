@@ -38,7 +38,7 @@ class BuildCommand(build):
 
 if os.environ.get('CIBUILDWHEEL', '0') == '1' and platform.system() == "Windows":
     triplet = "x64-windows" if platform.machine() == "x86_64" else "arm64-windows"
-    assert os.access(os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL.lib", os.F_OK)
+    assert os.path.exists(os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL.lib")
     setup(
         cmdclass={"build_clcpp": build_clcpp, "build": BuildCommand},
         ext_modules=[Extension(

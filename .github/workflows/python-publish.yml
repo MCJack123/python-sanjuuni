@@ -15,6 +15,7 @@ jobs:
     name: Build wheels for ${{ matrix.os }}
     runs-on: ${{ matrix.runs-on }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: linux-intel
@@ -42,6 +43,9 @@ jobs:
         env:
           CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
           CIBW_ARCHS: ${{ matrix.archs || 'auto' }}
+          CIBW_BEFORE_ALL_LINUX: dnf -y install ocl-icd-devel opencl-headers
+          CIBW_BEFORE_ALL_WINDOWS: vcpkg install opencl
+          CIBW_BEFORE_ALL_MACOS: brew install opencl-clhpp-headers
         # Can also be configured directly, using `with:`
         # with:
         #   package-dir: .

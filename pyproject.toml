@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "regex"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sanjuuni"
+authors = [{name = "JackMacWindows", email = "jackmacwindowslinux@gmail.com"}]
+version = "1.0"
+description = "Converts images and videos into a format suitable for ComputerCraft, based on sanjuuni."
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["computercraft", "images"]
+license = "GPL-2.0-or-later"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion"
+]
+
+[[tool.setuptools.ext-modules]]
+name = "sanjuuni.__init__"
+sources = ["sanjuunimodule.cpp", "sanjuuni.submodule/src/cc-pixel-cl.cpp", "sanjuuni.submodule/src/cc-pixel.cpp", "sanjuuni.submodule/src/generator.cpp", "sanjuuni.submodule/src/octree.cpp", "sanjuuni.submodule/src/quantize.cpp"]
+include-dirs = ["sanjuuni.submodule/src"]
+depends = ["sanjuuni.submodule/src/sanjuuni.hpp", "sanjuuni.submodule/src/opencl.hpp"]
+extra-compile-args = ["-DNO_POCO=1"] # https://github.com/pypa/setuptools/issues/4810

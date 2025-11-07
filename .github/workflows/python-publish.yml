@@ -24,8 +24,6 @@ jobs:
             runs-on: ubuntu-24.04-arm
           - os: windows-intel
             runs-on: windows-latest
-          - os: windows-arm
-            runs-on: windows-11-arm
           - os: macos-intel
             # macos-15-intel is the last x86_64 runner
             runs-on: macos-15-intel
@@ -47,7 +45,7 @@ jobs:
           CIBW_ENVIRONMENT_LINUX: CPPFLAGS=-DHAS_OPENCL=1 LDFLAGS=-lOpenCL
           CIBW_BEFORE_ALL_WINDOWS: vcpkg integrate install && vcpkg install opencl
           CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
-          CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair --add-path C:\\vcpkg\\installed\\*\\bin -w {dest_dir} {wheel}"
+          CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair --add-path C:\\vcpkg\\installed\\x64-windows\\bin -w {dest_dir} {wheel}"
         # Can also be configured directly, using `with:`
         # with:
         #   package-dir: .

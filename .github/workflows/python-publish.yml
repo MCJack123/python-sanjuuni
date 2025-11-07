@@ -46,6 +46,8 @@ jobs:
           CIBW_BEFORE_ALL_LINUX: dnf -y install ocl-icd-devel opencl-headers || apk add opencl-dev opencl-headers; if [ ! -f /usr/include/CL/opencl.hpp ]; then ln /usr/include/CL/cl2.hpp /usr/include/CL/opencl.hpp; fi
           CIBW_ENVIRONMENT_LINUX: CPPFLAGS=-DHAS_OPENCL=1 LDFLAGS=-lOpenCL
           CIBW_BEFORE_ALL_WINDOWS: vcpkg integrate install && vcpkg install opencl
+          CIBW_BEFORE_BUILD_WINDOWS: "pip install delvewheel"
+          CIBW_REPAIR_WHEEL_COMMAND_WINDOWS: "delvewheel repair -w {dest_dir} {wheel}"
         # Can also be configured directly, using `with:`
         # with:
         #   package-dir: .

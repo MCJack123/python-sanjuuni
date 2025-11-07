@@ -47,14 +47,26 @@ static PyMethodDef RGBImage_methods[] = {
 };
 
 static PyTypeObject RGBImage = {
-    .tp_name = "sanjuuni.RGBImage",
-    .tp_basicsize = sizeof(PyMat),
-    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC | Py_TPFLAGS_IMMUTABLETYPE | Py_TPFLAGS_DISALLOW_INSTANTIATION,
-    .tp_doc = "Buffer containing an RGB image to be converted.",
-    .tp_traverse = nulltraverse,
-    .tp_methods = RGBImage_methods,
-    .tp_members = RGBImage_members,
-    .tp_finalize = RGBImage_finalize,
+    {},
+    "sanjuuni.RGBImage",
+    sizeof(PyMat), 0,
+    NULL, NULL, NULL, NULL, NULL, NULL,
+    NULL, NULL, NULL,
+    NULL, NULL, NULL, NULL, NULL,
+    NULL,
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC | Py_TPFLAGS_IMMUTABLETYPE | Py_TPFLAGS_DISALLOW_INSTANTIATION,
+    "Buffer containing an RGB image to be converted.",
+    nulltraverse,
+    NULL,
+    NULL,
+    NULL,
+    NULL, NULL,
+    RGBImage_methods,
+    RGBImage_members,
+    NULL,
+    NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+    0,
+    RGBImage_finalize,
 };
 
 static Mat * GetRGBImage(PyObject *obj) {
@@ -107,14 +119,26 @@ static PyMethodDef IndexedImage_methods[] = {
 };
 
 static PyTypeObject IndexedImage = {
-    .tp_name = "sanjuuni.IndexedImage",
-    .tp_basicsize = sizeof(PyMat1b),
-    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC | Py_TPFLAGS_IMMUTABLETYPE | Py_TPFLAGS_DISALLOW_INSTANTIATION,
-    .tp_doc = "Buffer containing an indexed image to be converted.",
-    .tp_traverse = nulltraverse,
-    .tp_methods = IndexedImage_methods,
-    .tp_members = IndexedImage_members,
-    .tp_finalize = IndexedImage_finalize,
+    {},
+    "sanjuuni.IndexedImage",
+    sizeof(PyMat1b), 0,
+    NULL, NULL, NULL, NULL, NULL, NULL,
+    NULL, NULL, NULL,
+    NULL, NULL, NULL, NULL, NULL,
+    NULL,
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC | Py_TPFLAGS_IMMUTABLETYPE | Py_TPFLAGS_DISALLOW_INSTANTIATION,
+    "Buffer containing an indexed image to be converted.",
+    nulltraverse,
+    NULL,
+    NULL,
+    NULL,
+    NULL, NULL,
+    IndexedImage_methods,
+    IndexedImage_members,
+    NULL,
+    NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+    0,
+    IndexedImage_finalize,
 };
 
 static Mat1b * GetIndexedImage(PyObject *obj) {
@@ -627,10 +651,11 @@ static PyMethodDef sanjuuni_module_methods[] = {
 };
 
 static struct PyModuleDef sanjuuni_module = {
-    .m_base = PyModuleDef_HEAD_INIT,
-    .m_name = "sanjuuni",
-    .m_size = 0,
-    .m_methods = sanjuuni_module_methods
+    PyModuleDef_HEAD_INIT,
+    "sanjuuni",
+    "Converts images and videos into a format suitable for ComputerCraft, based on sanjuuni.",
+    0,
+    sanjuuni_module_methods
 };
 
 PyMODINIT_FUNC PyInit_sanjuuni() {

@@ -46,7 +46,7 @@ if os.environ.get('CIBUILDWHEEL', '0') == '1' and platform.system() == "Windows"
             include_dirs=["sanjuuni.submodule/src", os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\include"],
             libraries=[os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL"],
             depends=["sanjuuni.submodule/src/sanjuuni.hpp", "sanjuuni.submodule/src/opencl.hpp"],
-            extra_compile_args=["-DNO_POCO=1", "-DHAS_OPENCL=1", "-DCL_API_CALL=__cdecl", "-DCL_API_ENTRY=__declspec(dllimport)"] # https://github.com/pypa/setuptools/issues/4810
+            extra_compile_args=["-DNO_POCO=1", "-DHAS_OPENCL=1", "-DCL_API_ENTRY=__declspec(dllimport)"] # https://github.com/pypa/setuptools/issues/4810
         )]
     )
 else:

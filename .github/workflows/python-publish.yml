@@ -45,9 +45,7 @@ jobs:
           CIBW_ARCHS: ${{ matrix.archs || 'auto' }}
           CIBW_BEFORE_ALL_LINUX: dnf -y install ocl-icd-devel opencl-headers; ln /usr/include/CL/cl2.hpp /usr/include/CL/opencl.hpp
           CIBW_ENVIRONMENT_LINUX: CPPFLAGS=-I/usr/include
-          CIBW_BEFORE_ALL_WINDOWS: |
-            vcpkg integrate install
-            vcpkg install opencl
+          CIBW_BEFORE_ALL_WINDOWS: vcpkg integrate install && vcpkg install opencl
           CIBW_BEFORE_ALL_MACOS: brew install opencl-clhpp-headers
           CIBW_ENVIRONMENT_MACOS: CPPFLAGS=-I/usr/local/opt/opencl-clhpp-headers/include
         # Can also be configured directly, using `with:`

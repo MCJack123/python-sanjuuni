@@ -198,7 +198,7 @@ static PyObject *M_initOpenCL(PyObject *self, PyObject *args) {
         if (PyTuple_Size(args) > 0) {
             PyObject *arg = PyTuple_GetItem(args, 0);
             if (PyLong_Check(arg)) {
-                devinfo = OpenCL::select_device_with_id(PyLong_AsInt(arg));
+                devinfo = OpenCL::select_device_with_id(PyLong_AsLong(arg));
             } else if (PyUnicode_Check(arg)) {
                 std::string str = PyUnicode_AsUTF8(arg);
                 if (str == "best_flops") {

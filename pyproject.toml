@@ -17,6 +17,7 @@ classifiers = [
 ]
 
 [tool.setuptools]
+packages = ["sanjuuni"]
 py-modules = ["sanjuuni"]
 
 [[tool.setuptools.ext-modules]]

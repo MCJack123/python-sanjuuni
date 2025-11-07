@@ -8,7 +8,7 @@ authors = [{name = "JackMacWindows", email = "jackmacwindowslinux@gmail.com"}]
 version = "1.0"
 description = "Converts images and videos into a format suitable for ComputerCraft, based on sanjuuni."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 keywords = ["computercraft", "images"]
 license = "GPL-2.0-or-later"
 classifiers = [

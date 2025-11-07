@@ -45,8 +45,8 @@ jobs:
           CIBW_ARCHS: ${{ matrix.archs || 'auto' }}
           CIBW_BEFORE_ALL_LINUX: dnf -y install ocl-icd-devel opencl-headers || apk add opencl-dev opencl-headers; if [ ! -f /usr/include/CL/opencl.hpp ]; then ln /usr/include/CL/cl2.hpp /usr/include/CL/opencl.hpp; fi
           CIBW_ENVIRONMENT_LINUX: CPPFLAGS=-DHAS_OPENCL=1 LDFLAGS=-lOpenCL
-          CIBW_BEFORE_ALL_WINDOWS: vcpkg integrate install && vcpkg install opencl:x64-windows-static
-          CIBW_ENVIRONMENT_WINDOWS: CPPFLAGS="-IC:/vcpkg/installed/x64-windows/include -DHAS_OPENCL=1" LDFLAGS="-LC:/vcpkg/installed/x64-windows/lib -lOpenCL"
+          CIBW_BEFORE_ALL_WINDOWS: vcpkg integrate install && vcpkg install opencl
+          CIBW_ARCHS: auto64
         # Can also be configured directly, using `with:`
         # with:
         #   package-dir: .

@@ -20,7 +20,7 @@ class build_clcpp(Command, SubCommand):
             file.write("// Generated automatically; do not edit!\n#include <string>\nnamespace OpenCL {std::string get_opencl_c_code() { return ")
             text = ""
             with open("sanjuuni.submodule/src/cc-pixel.cpp", "r") as infile: text = infile.read()
-            text = regex.sub("#ifndef OPENCV.*?#endif\n", "", text)
+            text = regex.sub("#ifndef OPENCV.*?#endif\n", "", text, flags=regex.S)
             text = regex.sub("\\\\", "\\\\\\\\", text)
             text = regex.sub('"', '\\\\"', text)
             text = regex.sub("^", '"', text, flags=regex.M)

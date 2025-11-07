@@ -37,13 +37,15 @@ class BuildCommand(build):
         build.run(self)
 
 if os.environ.get('CIBUILDWHEEL', '0') == '1' and platform.system() == "Windows":
+    triplet = "x64-windows" if platform.machine() == "x86_64" else "arm64-windows"
+    assert os.access(os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL.lib", os.F_OK)
     setup(
         cmdclass={"build_clcpp": build_clcpp, "build": BuildCommand},
         ext_modules=[Extension(
             name="sanjuuni.__init__",
             sources=["sanjuunimodule.cpp", "sanjuuni.submodule/src/cc-pixel-cl.cpp", "sanjuuni.submodule/src/cc-pixel.cpp", "sanjuuni.submodule/src/generator.cpp", "sanjuuni.submodule/src/octree.cpp", "sanjuuni.submodule/src/quantize.cpp"],
-            include_dirs=["sanjuuni.submodule/src", os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\x64-windows\\include"],
-            libraries=[os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\x64-windows\\lib\\OpenCL"],
+            include_dirs=["sanjuuni.submodule/src", os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\include"],
+            libraries=[os.environ.get("VCPKG_INSTALLATION_ROOT") + "\\installed\\" + triplet + "\\lib\\OpenCL"],
             depends=["sanjuuni.submodule/src/sanjuuni.hpp", "sanjuuni.submodule/src/opencl.hpp"],
             extra_compile_args=["-DNO_POCO=1", "-DHAS_OPENCL=1"] # https://github.com/pypa/setuptools/issues/4810
         )]

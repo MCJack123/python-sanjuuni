@@ -24,15 +24,9 @@ jobs:
         with:
           submodules: true
 
-      - uses: actions/setup-python@v5
+      - uses: RalfG/python-wheels-manylinux-build@v0.2.2
         with:
-          python-version: "3.x"
-
-      - name: Build release distributions
-        run: |
-          # NOTE: put your own distribution build steps here.
-          python -m pip install build setuptools
-          python -m build
+          python-versions: 'cp312-cp312 cp313-cp313 cp314-cp314'
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4

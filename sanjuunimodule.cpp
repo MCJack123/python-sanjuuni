@@ -131,7 +131,7 @@ static PyTypeObject IndexedImage = {
     nulltraverse,
     NULL,
     NULL,
-    NULL,
+    0,
     NULL, NULL,
     IndexedImage_methods,
     IndexedImage_members,

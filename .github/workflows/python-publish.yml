@@ -42,11 +42,10 @@ jobs:
         uses: pypa/cibuildwheel@v3.2.1
         env:
           CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
-          CIBW_ARCHS: ${{ matrix.archs || 'auto' }}
+          CIBW_ARCHS: auto64
           CIBW_BEFORE_ALL_LINUX: dnf -y install ocl-icd-devel opencl-headers || apk add opencl-dev opencl-headers; if [ ! -f /usr/include/CL/opencl.hpp ]; then ln /usr/include/CL/cl2.hpp /usr/include/CL/opencl.hpp; fi
           CIBW_ENVIRONMENT_LINUX: CPPFLAGS=-DHAS_OPENCL=1 LDFLAGS=-lOpenCL
           CIBW_BEFORE_ALL_WINDOWS: vcpkg integrate install && vcpkg install opencl
-          CIBW_ARCHS: auto64
         # Can also be configured directly, using `with:`
         # with:
         #   package-dir: .

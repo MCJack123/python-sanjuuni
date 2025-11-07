@@ -16,6 +16,9 @@ classifiers = [
     "Topic :: Multimedia :: Graphics :: Graphics Conversion"
 ]
 
+[tool.setuptools]
+py-modules = ["sanjuuni"]
+
 [[tool.setuptools.ext-modules]]
 name = "sanjuuni.__init__"
 sources = ["sanjuunimodule.cpp", "sanjuuni.submodule/src/cc-pixel-cl.cpp", "sanjuuni.submodule/src/cc-pixel.cpp", "sanjuuni.submodule/src/generator.cpp", "sanjuuni.submodule/src/octree.cpp", "sanjuuni.submodule/src/quantize.cpp"]

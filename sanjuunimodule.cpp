@@ -122,7 +122,7 @@ static PyTypeObject IndexedImage = {
     {},
     "sanjuuni.IndexedImage",
     sizeof(PyMat1b), 0,
-    NULL, NULL, NULL, NULL, NULL, NULL,
+    NULL, 0, NULL, NULL, NULL, NULL,
     NULL, NULL, NULL,
     NULL, NULL, NULL, NULL, NULL,
     NULL,
